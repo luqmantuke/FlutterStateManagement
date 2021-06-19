@@ -3,6 +3,7 @@ import 'package:statemanagementshopapp/screens/product_overview_screen.dart';
 import 'package:statemanagementshopapp/screens/product_detail_screen.dart';
 import 'providers/products.dart';
 import 'package:provider/provider.dart';
+import 'providers/cart.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,9 +13,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => Products(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => Products(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => Cart(),
+        ),
+      ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           // This is the theme of your application.
